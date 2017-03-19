@@ -1,0 +1,54 @@
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+
+public class CheckHTMLTags {
+    private WebDriver driver;
+    private String baseUrl;
+    private boolean acceptNextAlert = true;
+    private StringBuffer verificationErrors = new StringBuffer();
+
+    @Before
+    public void setUp() throws Exception {
+        driver = new ChromeDriver();
+        baseUrl = "http://stackoverflow.com/";
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    }
+
+    @Test
+    public void testMail() throws Exception {
+
+        driver.get(baseUrl);
+
+        //  assertEquals("Incorrect script tags", driver.findElements(By.xpath(".//script")).size(), driver.findElements(By.xpath(".//script[@src]")).size());
+        System.out.println(driver.findElements(By.xpath(".//style")).size());
+        // assertEquals("More than 1 JS file", 1, driver.findElements(By.xpath(".//script[@src]")).size());
+        // assertEquals("More than 1 STYLE file", 1, driver.findElements(By.xpath(".//link[@rel='stylesheet']")).size());
+
+        List<WebElement> elements = driver.findElements(By.xpath(".//*[@id]"));
+        Set<String> idsAfter = new HashSet<String>();
+        
+        for (WebElement el : elements) {
+            idsAfter.add(el.getAttribute("id"));
+        }
+        assertTrue("Incorrect ID", elements.size() == idsAfter.size());
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        driver.quit();
+
+    }
+}
+
+
