@@ -30,10 +30,10 @@ public class CheckHTMLTags {
 
         driver.get(baseUrl);
 
-        //  assertEquals("Incorrect script tags", driver.findElements(By.xpath(".//script")).size(), driver.findElements(By.xpath(".//script[@src]")).size());
+         assertEquals("Incorrect script tags", driver.findElements(By.xpath(".//script")).size(), driver.findElements(By.xpath(".//script[@src]")).size());
         System.out.println(driver.findElements(By.xpath(".//style")).size());
-        // assertEquals("More than 1 JS file", 1, driver.findElements(By.xpath(".//script[@src]")).size());
-        // assertEquals("More than 1 STYLE file", 1, driver.findElements(By.xpath(".//link[@rel='stylesheet']")).size());
+        assertEquals("More than 1 JS file", 1, driver.findElements(By.xpath(".//script[@src]")).size());
+        assertEquals("More than 1 STYLE file", 1, driver.findElements(By.xpath(".//link[@rel='stylesheet']")).size());
 
         List<WebElement> elements = driver.findElements(By.xpath(".//*[@id]"));
         Set<String> idsAfter = new HashSet<String>();
