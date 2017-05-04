@@ -1,4 +1,0 @@
-/* This file for testing 
-GIT
-and learning
-*/
